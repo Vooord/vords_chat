@@ -68,7 +68,10 @@ def main(event=None, host='localhost', port=32280):  # event прилетит в
     host_from_butt = host_butt.get()
     port_from_butt = port_butt.get()
     if host_from_butt: host = host_from_butt
-    if port_from_butt: port = port_from_butt
+    try:
+        if port_from_butt: port = int(port_from_butt)
+    except TypeError:
+        print(f'Incorrect "port" value. Trying to use default "{port}"')
     root.destroy()
 
     try:
